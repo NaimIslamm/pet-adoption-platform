@@ -30,7 +30,7 @@ const displayCategory = (items) => {
 
   items.forEach((item) => {
     const buttonContainer = document.createElement("div");
-    buttonContainer.innerHTML = `<div class="flex gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><button onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-2"><img class="w-[56px] " src="${item.category_icon}"/>${item.category}</button></div>`;
+    buttonContainer.innerHTML = `<button onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px] " src="${item.category_icon}"/>${item.category}</button>`;
     categorySection.append(buttonContainer);
   });
 };
@@ -54,6 +54,12 @@ const demo = [
 const displayVideos = (videos) => {
   const categorySection = document.getElementById("card-1st");
   categorySection.innerHTML = "";
+  if (videos.length === 0) {
+    categorySection.innerHTML = `<div class="flex flex-col gap-5 items-center justify-center shadow w-[80%] py-15 px-15 text-center"><img src="assets/error.webp"/><h2 class="text-[40px] font-bold">No Information Available</h2>
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+its layout. The point of using Lorem Ipsum is that it has a.</p></div>
+    `;
+  }
   videos.forEach((video) => {
     console.log(video);
     const card = document.createElement("div");
