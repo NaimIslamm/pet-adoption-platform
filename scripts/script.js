@@ -17,35 +17,64 @@ const loadVideos = () => {
 };
 
 // load videos from API--------------------------------------------
-
+// click category button in their respective id -----------------
+const clickButton = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayVideos(data.data))
+    .catch((error) => console.log(error));
+};
 // display the categories section-----------------------------------------------------
 const displayCategory = (items) => {
   const categorySection = document.getElementById("categories-main");
+
   items.forEach((item) => {
     const buttonContainer = document.createElement("div");
-    buttonContainer.innerHTML = `<div class="flex gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px] " src="${item.category_icon}"/><button class="category-btn font-bold text-[24px]">${item.category}</button></div>`;
+    buttonContainer.innerHTML = `<div class="flex gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><button onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-2"><img class="w-[56px] " src="${item.category_icon}"/>${item.category}</button></div>`;
     categorySection.append(buttonContainer);
   });
 };
 // display the categories section-----------------------------------------------------
+const demo = [
+  {
+    petId: 1,
+    breed: "Golden Retriever",
+    category: "Dog",
+    date_of_birth: "2023-01-15",
+    price: 1200,
+    image: "https://i.ibb.co.com/p0w744T/pet-1.jpg",
+    gender: "Male",
+    pet_details:
+      "This friendly male Golden Retriever is energetic and loyal, making him a perfect companion for families. Born on January 15, 2023, he enjoys playing outdoors and is especially great with children. Fully vaccinated, he's ready to join your family and bring endless joy. Priced at $1200, he offers love, loyalty, and a lively spirit for those seeking a playful yet gentle dog.",
+    vaccinated_status: "Fully",
+    pet_name: "Sunny",
+  },
+];
 // display the videos section-----------------------------------------------------
 const displayVideos = (videos) => {
   const categorySection = document.getElementById("card-1st");
+  categorySection.innerHTML = "";
   videos.forEach((video) => {
+    console.log(video);
     const card = document.createElement("div");
     card.classList = "card card-compact";
-    card.innerHTML = `<div class="card-main py-5 border w-[310px]"><figure class="">
-    <img class="w-full object-cover object-center"
+    card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
+    <img class="w-full object-cover object-center rounded-xl"
       src="${video.image}"
-      alt="pet" />
+      alt="pet"/>
   </figure>
-  <div class="">
-    <h2 class="card-title">Card Title</h2>
-    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-    <div class="card-actions justify-between">
-      <button class="btn py-2 px-4 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
-      <button class="btn btn-primary">Buy Now</button>
-      <button class="btn btn-primary">Buy Now</button>
+  <div class="card-details py-3 flex flex-col gap-2">
+    <h2 class="card-title text-[20px]">${video.pet_name}</h2>
+    <div class="character-list flex flex-col">
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${video.breed}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${video.date_of_birth}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${video.gender}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${video.price}</span>
+    </div>
+    <div class="card-actions justify-between border-t border-[#131313] pt-4">
+      <button class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
+      <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
+      <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
   </div></div>`;
 
