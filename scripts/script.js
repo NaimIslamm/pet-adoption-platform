@@ -15,13 +15,26 @@ const loadVideos = () => {
     .then((data) => displayVideos(data.pets))
     .catch((error) => console.log(error));
 };
+// remove active class---------------
+const removeActiveClass = () => {
+  const buttons = document.getElementsByClassName("category-btn");
+  for (const button of buttons) {
+    button.classList.remove("active");
+  }
+};
+// remove active class---------------
 
 // load videos from API--------------------------------------------
 // click category button in their respective id -----------------
 const clickButton = (id) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayVideos(data.data))
+    .then((data) => {
+      removeActiveClass();
+      const activeButton = document.getElementById(`btn-${id}`);
+      activeButton.classList.add("active");
+      displayVideos(data.data);
+    })
     .catch((error) => console.log(error));
 };
 // display the categories section-----------------------------------------------------
@@ -30,7 +43,7 @@ const displayCategory = (items) => {
 
   items.forEach((item) => {
     const buttonContainer = document.createElement("div");
-    buttonContainer.innerHTML = `<button onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px] " src="${item.category_icon}"/>${item.category}</button>`;
+    buttonContainer.innerHTML = `<button id="btn-${item.category}" onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px]" src="${item.category_icon}"/>${item.category}</button>`;
     categorySection.append(buttonContainer);
   });
 };
@@ -50,6 +63,29 @@ const demo = [
     pet_name: "Sunny",
   },
 ];
+// display the thumbnails by clicking like-----------------------------------------------------
+const loadThumbnails = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+    .then((res) => res.json())
+    .then((data) => displayTumbnails(data.petData.image))
+    .catch((error) => console.log(error));
+};
+const displayTumbnails = (images) => {
+  const categorySection = document.getElementById("card-2nd");
+  console.log(images);
+  const thumbnail = document.createElement("div");
+  thumbnail.innerHTML = `<img class="w-[100px]" src="${images}"/>`;
+  categorySection.append(thumbnail);
+};
+// const displayTumbnails = (images) => {
+//   const categorySection = document.getElementById("card-2nd");
+//   console.log(images);
+//   images.forEach((image) => {
+//     const thumbnail = document.createElement("div");
+//     thumbnail.innerHTML = `<img class="w-[100px]"  src="${image.image}"/>`;
+//     categorySection.append(thumbnail);
+//   });
+// };
 // display the videos section-----------------------------------------------------
 const displayVideos = (videos) => {
   const categorySection = document.getElementById("card-1st");
@@ -61,7 +97,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p></div>
     `;
   }
   videos.forEach((video) => {
-    console.log(video);
+    // console.log(video);
     const card = document.createElement("div");
     card.classList = "card card-compact";
     card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
@@ -78,7 +114,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p></div>
     <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${video.price}</span>
     </div>
     <div class="card-actions justify-between border-t border-[#131313] pt-4">
-      <button class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
+      <button onclick="loadThumbnails(${video.petId})" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
       <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
       <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
@@ -88,5 +124,6 @@ its layout. The point of using Lorem Ipsum is that it has a.</p></div>
   });
 };
 // display the videos section-----------------------------------------------------
+
 loadVideos();
 loadCatagories();
