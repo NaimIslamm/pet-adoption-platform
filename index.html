@@ -23,18 +23,30 @@
   <body>
     <header class="header-main">
       <nav
-        class="nav-main flex w-10/12 mx-auto justify-between items-center py-6"
+        class="nav-main topnav flex w-10/12 mx-auto justify-between items-center py-6"
       >
         <div class="logo w-[93px]">
           <img class="w-full" src="assets/Frame 6.png" alt="" />
         </div>
-        <ul class="flex gap-6">
+        <ul class="flex gap-6" id="myLinks">
           <li><a href="#">Home</a></li>
           <li><a href="#">Shop</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
-        <div class="icon"><i class="fa-regular fa-user"></i></div>
+        <div class="icon nav-icon"><i class="fa-regular fa-user"></i></div>
+        <div
+          id="toggleIcon"
+          class="menu-btn icon hidden"
+          onclick="myFunction()"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </div>
       </nav>
+      <ul class="flex gap-6" id="myLinks1">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
       <div
         class="hero-section w-7/12 flex flex-col gap-[15px] py-14 mx-auto justify-center items-center"
       >
