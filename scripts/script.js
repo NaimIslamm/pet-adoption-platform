@@ -74,19 +74,11 @@ const displayTumbnails = (images) => {
   const categorySection = document.getElementById("card-2nd");
   console.log(images);
   const thumbnail = document.createElement("div");
-  thumbnail.innerHTML = `<img class="w-[100px]" src="${images}"/>`;
+  thumbnail.innerHTML = `<img class="w-[110px] object-cover object-center shadow" src="${images}"/>`;
   categorySection.append(thumbnail);
 };
-// const displayTumbnails = (images) => {
-//   const categorySection = document.getElementById("card-2nd");
-//   console.log(images);
-//   images.forEach((image) => {
-//     const thumbnail = document.createElement("div");
-//     thumbnail.innerHTML = `<img class="w-[100px]"  src="${image.image}"/>`;
-//     categorySection.append(thumbnail);
-//   });
-// };
 // display the thumbnails by clicking like-----------------------------------------------------
+
 // load details & show details by clicking details button------------------------
 const loadDetails = async (id) => {
   const url = `https://openapi.programming-hero.com/api/peddy/pet/${id}`;
@@ -138,7 +130,7 @@ const displayVideos = (videos) => {
     </div>
     <div class="card-actions justify-between border-t border-[#131313] pt-4">
       <button onclick="loadThumbnails(${video.petId})" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
-      <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
+      <button onclick="loadCountdown(${video.petId})" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
       <button onclick="loadDetails(${video.petId})" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
   </div></div>`;
