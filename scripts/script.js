@@ -88,21 +88,30 @@ const loadDetails = async (id) => {
 };
 const displayDetails = (data) => {
   const detailsContainer = document.getElementById("modal-container");
-  const petName = data.pet_name || "Unknown Pet";
-  const breed = data.breed || "Not Specified";
-  const birthDate = data.date_of_birth || "Unknown Date";
-  const gender = data.gender || "Not Provided";
-  const price = data.price || " Not Available";
-  const imageSrc = data.image || "assets/default-image.jpg";
-  detailsContainer.innerHTML = `<img class="w-[100%] object-cover object-center" src="${imageSrc}"/>
-  <p class="text-[24px] font-bold">${petName}<p/>
-  <div class="flex flex-wrap gap-2"><span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${breed}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${birthDate}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${gender}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${price}</span></div>
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-syringe"></i>Vaccinated status: ${data.vaccinated_status}</span>
+
+  detailsContainer.innerHTML = `<img class="w-[100%] object-cover object-center" src="${
+    data.image
+  }"/>
+  <p class="text-[24px] font-bold">${data.pet_name}<p/>
+  <div class="flex flex-wrap gap-2"><span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${
+    data.breed ? data.breed : "Not Specific"
+  }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${
+      data.date_of_birth ? data.date_of_birth : "Unknown Date"
+    }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${
+      data.gender ? data.gender : "Not Provided"
+    }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${
+      data.price ? data.price : "Not Available"
+    }</span></div>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-syringe"></i>Vaccinated status: ${
+      data.vaccinated_status ? data.vaccinated_status : "Not Available"
+    }</span>
     <p class="text-[18px] font-bold">Details Information<p/>
-    <span class="flex gap-2 bold items-center"> ${data.pet_details}</span></div>`;
+    <span class="flex gap-2 bold items-center"> ${
+      data.pet_details
+    }</span></div>`;
   document.getElementById("customModal").showModal();
 };
 // load details & show details by clicking details button------------------------
@@ -122,30 +131,39 @@ const displayVideos = (videos) => {
     // console.log(video);
     const card = document.createElement("div");
     card.classList = "card card-compact";
-    // add default values if API doesn't has any value-------------
-    const petName = video.pet_name || "Unknown Pet";
-    const breed = video.breed || "Not Specified";
-    const birthDate = video.date_of_birth || "Unknown Date";
-    const gender = video.gender || "Not Provided";
-    const price = video.price || " Not Available";
-    const imageSrc = video.image || "assets/default-image.jpg";
     card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
     <img class="w-full object-cover object-center rounded-xl"
-      src="${imageSrc}"
+      src="${video.image ? video.image : "assets/default-image.jpg"}"
       alt="pet"/>
   </figure>
     <div class="card-details py-3 flex flex-col gap-2">
-    <h2 class="card-title text-[20px]">${petName}</h2>
+    <h2 class="card-title text-[20px]">${
+      video.pet_name ? video.pet_name : "Unknown Pet"
+    }</h2>
     <div class="character-list flex flex-col">
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${breed}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${birthDate}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${gender}</span>
-    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${price}$</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${
+      video.breed ? video.breed : "Not Specified"
+    }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${
+      video.date_of_birth ? video.date_of_birth : "Unknown Date"
+    }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${
+      video.gender ? video.gender : "Not Provided"
+    }</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${
+      video.price ? video.price : " Not Available"
+    }$</span>
     </div>
     <div class="card-actions justify-between border-t border-[#131313] pt-4">
-      <button onclick="loadThumbnails(${video.petId})" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
-      <button onclick="loadCountdown(${video.petId})" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
-      <button onclick="loadDetails(${video.petId})" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
+      <button onclick="loadThumbnails(${
+        video.petId
+      })" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
+      <button onclick="loadCountdown(${
+        video.petId
+      })" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
+      <button onclick="loadDetails(${
+        video.petId
+      })" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
   </div></div>`;
 
