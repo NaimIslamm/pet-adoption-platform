@@ -47,7 +47,7 @@ const displayCategory = (items) => {
     categorySection.append(buttonContainer);
   });
 };
-// display the categories section-----------------------------------------------------
+// display the categories section-------------------------------------------------------------
 const demo = [
   {
     petId: 1,
@@ -86,7 +86,28 @@ const displayTumbnails = (images) => {
 //     categorySection.append(thumbnail);
 //   });
 // };
-// display the videos section-----------------------------------------------------
+// display the thumbnails by clicking like-----------------------------------------------------
+// load details & show details by clicking details button------------------------
+const loadDetails = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/peddy/pet/${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  displayDetails(data.petData);
+};
+const displayDetails = (data) => {
+  const detailsContainer = document.getElementById("modal-container");
+  detailsContainer.innerHTML = `<img class="w-[100%] object-cover object-center" src="${data.image}"/>
+  <p class="text-[24px] font-bold">${data.pet_name}<p/>
+  <div class="flex flex-wrap gap-2"><span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${data.breed}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-regular fa-calendar"></i>Birth: ${data.date_of_birth}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-mercury"></i>Gender: ${data.gender}</span>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-dollar-sign"></i>Price: ${data.price}</span></div>
+    <span class="flex gap-2 bold items-center"><i class="fa-solid fa-syringe"></i>Vaccinated status: ${data.vaccinated_status}</span></div>`;
+  document.getElementById("customModal").showModal();
+};
+// load details & show details by clicking details button------------------------
+//
+// display the videos section-------------------------------------------------------------
 const displayVideos = (videos) => {
   const categorySection = document.getElementById("card-1st");
   categorySection.innerHTML = "";
@@ -116,7 +137,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p></div>
     <div class="card-actions justify-between border-t border-[#131313] pt-4">
       <button onclick="loadThumbnails(${video.petId})" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
       <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
-      <button class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
+      <button onclick="loadDetails(${video.petId})" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
   </div></div>`;
 

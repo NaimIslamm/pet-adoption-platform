@@ -85,14 +85,31 @@
       class="card-main flex w-10/12 mx-auto justify-between items-start py-6"
     >
       <div
-        class="flex gap-[24px] flex-wrap w-[76%] items-center justify-center"
+        class="w-[80%] flex gap-[24px] flex-wrap p-2 items-center justify-center"
         id="card-1st"
       ></div>
       <div
-        class="w-[24%] flex gap-[10px] p-5 rounded-xl shadow flex-wrap items-start justify-start"
+        class="w-[20%] flex gap-[10px] p-2 rounded-xl shadow flex-wrap items-center justify-center"
         id="card-2nd"
       ></div>
     </div>
+    <button class="btn hidden" onclick="customModal.showModal()">
+      open modal
+    </button>
+    <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div
+          id="modal-container"
+          class="flex flex-col gap-2 p-2 items-start"
+        ></div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
     <!-- card section -->
     <script src="scripts/script.js"></script>
   </body>
