@@ -96,6 +96,7 @@ const loadDetails = async (id) => {
 };
 const displayDetails = (data) => {
   const detailsContainer = document.getElementById("modal-container");
+
   detailsContainer.innerHTML = `<img class="w-[100%] object-cover object-center" src="${data.image}"/>
   <p class="text-[24px] font-bold">${data.pet_name}<p/>
   <div class="flex flex-wrap gap-2"><span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${data.breed}</span>
@@ -109,13 +110,14 @@ const displayDetails = (data) => {
 //
 // display the videos section-------------------------------------------------------------
 const displayVideos = (videos) => {
+  console.log("hii", videos);
   const categorySection = document.getElementById("card-1st");
   categorySection.innerHTML = "";
   if (videos.length === 0) {
     categorySection.innerHTML = `<div class="flex flex-col gap-5 items-center justify-center shadow w-[80%] py-15 px-15 text-center"><img src="assets/error.webp"/><h2 class="text-[40px] font-bold">No Information Available</h2>
-    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
-its layout. The point of using Lorem Ipsum is that it has a.</p></div>
-    `;
+    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.
+    </p>
+    </div>`;
   }
   videos.forEach((video) => {
     // console.log(video);
@@ -126,7 +128,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p></div>
       src="${video.image}"
       alt="pet"/>
   </figure>
-  <div class="card-details py-3 flex flex-col gap-2">
+    <div class="card-details py-3 flex flex-col gap-2">
     <h2 class="card-title text-[20px]">${video.pet_name}</h2>
     <div class="character-list flex flex-col">
     <span class="flex gap-2 bold items-center"><i class="fa-solid fa-table"></i>Breed: ${video.breed}</span>
