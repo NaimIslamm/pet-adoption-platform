@@ -115,7 +115,15 @@ const displayDetails = (data) => {
   document.getElementById("customModal").showModal();
 };
 // load details & show details by clicking details button------------------------
-//
+// load adopt details------------------------------------------------------------
+const adoptDetails = () => {
+  document.getElementById("customModal2").showModal();
+};
+// function adoptDetails() {
+//   document.getElementById("customModal2").showModal();
+// }
+// load adopt details------------------------------------------------------------
+
 // display the videos section-------------------------------------------------------------
 const displayVideos = (videos) => {
   console.log("hii", videos);
@@ -131,6 +139,18 @@ const displayVideos = (videos) => {
     // console.log(video);
     const card = document.createElement("div");
     card.classList = "card card-compact";
+
+    //dhori: If video.pet_name exists(truthy), display it.
+    // If video.pet_name is null, undefined, or empty(flasy), display "Unknown Pet".
+    // let petName;
+    // example:
+    // if (video.pet_name) {
+    //   petName = video.pet_name;
+    // } else {
+    //   petName = "Unknown Pet";
+    // }
+    // ternary te likhci code a----------
+
     card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
     <img class="w-full object-cover object-center rounded-xl"
       src="${video.image ? video.image : "assets/default-image.jpg"}"
@@ -158,9 +178,7 @@ const displayVideos = (videos) => {
       <button onclick="loadThumbnails(${
         video.petId
       })" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
-      <button onclick="loadCountdown(${
-        video.petId
-      })" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
+      <button  onclick="adoptDetails()" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
       <button onclick="loadDetails(${
         video.petId
       })" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>

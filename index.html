@@ -106,6 +106,7 @@
         id="card-2nd"
       ></div>
     </div>
+    <!-- MODAL-- -->
     <button class="btn hidden" onclick="customModal.showModal()">
       open modal
     </button>
@@ -123,8 +124,26 @@
         </div>
       </div>
     </dialog>
+    <!-- another modal -->
+    <button class="btn hidden" onclick="customModal2.showModal()">
+      open modal
+    </button>
+    <dialog id="customModal2" class="modal modal-bottom sm:modal-middle">
+      <div class="modal-box">
+        <div id="modal-container" class="flex flex-col gap-2 p-2 items-center">
+          <img src="" alt="" />
+          <h3 class="text-[24px] text-center font-bold">Congrates</h3>
+          <p>Adoption is Under Process</p>
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
     <!-- card section -->
     <script src="scripts/script.js"></script>
   </body>
-  html { scroll-behavior: smooth; }
 </html>

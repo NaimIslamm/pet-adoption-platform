@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .active {
   background-color: rgba(14, 122, 129, 0.1);
   border-radius: 50px;
