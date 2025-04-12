@@ -207,3 +207,5 @@ function myFunction() {
     icon.innerHTML = "";
   }
 }
+
+const sortByPrice = () => {};

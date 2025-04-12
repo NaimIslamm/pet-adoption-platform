@@ -80,14 +80,17 @@
     </section>
     <section
       id="categories-main"
-      class="flex w-10/12 mx-auto justify-between items-center py-6"
+      class="flex flex-wrap gap-2 w-10/12 mx-auto justify-between items-center py-6"
     ></section>
 
     <section
       class="deal-sort-container flex w-10/12 mx-auto justify-between items-center py-6"
     >
       <p class="text-[24px] text-center font-bold">Best Deal For you</p>
-      <button class="btn bg-[#0E7A81] rounded-xl text-[white]">
+      <button
+        onclick="sortByPrice()"
+        class="btn bg-[#0E7A81] rounded-xl text-[white]"
+      >
         <a href="#card">Sort by Price</a>
       </button>
     </section>
@@ -111,7 +114,7 @@
       open modal
     </button>
     <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
+      <div class="modal-box w-10/12 mx-auto">
         <div
           id="modal-container"
           class="flex flex-col gap-2 p-2 items-start"
@@ -129,11 +132,15 @@
       open modal
     </button>
     <dialog id="customModal2" class="modal modal-bottom sm:modal-middle">
-      <div class="modal-box">
+      <div class="modal-box w-10/12 mx-auto">
         <div id="modal-container" class="flex flex-col gap-2 p-2 items-center">
-          <img src="" alt="" />
+          <img
+            class="w-[130px]"
+            src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMXlvajVhNWwycTRrMTU1c2h3bDRxNHR5cWR0dmNsdjZybmJ0YjdvNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/YgbWOUHSWoYMy0gCiU/giphy.gif"
+            alt=""
+          />
           <h3 class="text-[24px] text-center font-bold">Congrates</h3>
-          <p>Adoption is Under Process</p>
+          <p class="text-[20px]">Adoption is Under Process</p>
         </div>
         <div class="modal-action">
           <form method="dialog">
