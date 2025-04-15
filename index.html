@@ -23,7 +23,7 @@
   <body>
     <header class="header-main">
       <nav
-        class="nav-main topnav flex w-10/12 mx-auto justify-between items-center py-6"
+        class="nav-main topnav flex w-11/12 mx-auto justify-between items-center py-6"
       >
         <div class="logo w-[93px]">
           <img class="w-full" src="assets/Frame 6.png" alt="" />
@@ -64,6 +64,12 @@
         <button class="btn bg-[#0E7A81] rounded-xl text-[white]">
           <a href="#adopt">View More</a>
         </button>
+        <div id="loading-container">
+          <img
+            src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVhMDhjcmlkOXpjOGJ3bXQ3am80ZHViM3htazFiNXNvdHB6cno3aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI6SIIHBdRxXI40/giphy.gif"
+            alt=""
+          />
+        </div>
         <div class="hero-image sm:max-w-[400px] md:max-w-[802px] w-[100%]">
           <img class="w-full" src="assets/2151806337 1.png" alt="" />
         </div>
@@ -83,17 +89,21 @@
     <section
       id="categories-main"
       class="flex flex-wrap gap-2 sm:w-11/12 mx-auto justify-between items-center py-5"
-    ></section>
+    >
+      <div id="loading-container">
+        <img
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVhMDhjcmlkOXpjOGJ3bXQ3am80ZHViM3htazFiNXNvdHB6cno3aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI6SIIHBdRxXI40/giphy.gif"
+          alt=""
+        />
+      </div>
+    </section>
 
     <section
       class="deal-sort-container flex sm:w-11/12 mx-auto justify-between items-center py-6"
     >
       <p class="text-[24px] text-center font-bold">Best Deal For you</p>
-      <button
-        onclick="sortByPrice()"
-        class="btn bg-[#0E7A81] rounded-xl text-[white]"
-      >
-        <a href="#card">Sort by Price</a>
+      <button id="sortBtn" class="btn bg-[#0E7A81] rounded-xl text-[white]">
+        Sort by Price
       </button>
     </section>
 
@@ -102,6 +112,12 @@
       id="card"
       class="card-main flex sm:w-11/12 mx-auto justify-between items-start py-5"
     >
+      <div id="loading-container">
+        <img
+          src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVhMDhjcmlkOXpjOGJ3bXQ3am80ZHViM3htazFiNXNvdHB6cno3aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI6SIIHBdRxXI40/giphy.gif"
+          alt=""
+        />
+      </div>
       <div
         class="w-[80%] flex gap-[24px] flex-wrap p-2 items-center justify-center"
         id="card-1st"
@@ -152,6 +168,13 @@
         </div>
       </div>
     </dialog>
+    <div id="loading-container">
+      <img
+        src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDVhMDhjcmlkOXpjOGJ3bXQ3am80ZHViM3htazFiNXNvdHB6cno3aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oEjI6SIIHBdRxXI40/giphy.gif"
+        alt=""
+      />
+    </div>
+
     <!-- card section -->
     <script src="scripts/script.js"></script>
   </body>

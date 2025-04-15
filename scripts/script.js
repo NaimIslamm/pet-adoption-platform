@@ -1,19 +1,48 @@
 // fetch load and display the category section-------
 // load CATEGORIES button from API--------------------------------
-const loadCatagories = () => {
-  fetch("https://openapi.programming-hero.com/api/peddy/categories")
-    .then((res) => res.json())
-    .then((data) => displayCategory(data.categories))
-    .catch((error) => console.log(error));
+
+// normal arrow function---------
+
+// const loadCatagories = () => {
+//   fetch("https://openapi.programming-hero.com/api/peddy/categories")
+//     .then((res) => res.json())
+//     .then((data) => displayCategory(data.categories))
+//     .catch((error) => console.log(error));
+// };
+
+// async await function------
+
+const loadCatagories = async () => {
+  document.getElementById("loading-container").style.display = "block";
+  const url = await fetch(
+    "https://openapi.programming-hero.com/api/peddy/categories"
+  );
+  const data = await url.json();
+  if (data.categories > 0) {
+    document.getElementById("loading-container").style.display = "none";
+  }
+  displayCategory(data.categories);
 };
 // load CATEGORIES button from API--------------------------------
 
 // load videos from API--------------------------------------------
-const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/peddy/pets")
-    .then((res) => res.json())
-    .then((data) => displayVideos(data.pets))
-    .catch((error) => console.log(error));
+// const loadVideos = () => {
+//   document.getElementById("loading-container").style.display = "block";
+//   fetch("https://openapi.programming-hero.com/api/peddy/pets")
+//     .then((res) => res.json())
+//     .then((data) => displayVideos(data.pets))
+//     .catch((error) => console.log(error));
+// };
+const loadVideos = async () => {
+  document.getElementById("loading-container").style.display = "block";
+  const url = await fetch(
+    "https://openapi.programming-hero.com/api/peddy/pets"
+  );
+  const data = await url.json();
+  if (data.pets.length > 0) {
+    document.getElementById("loading-container").style.display = "none";
+  }
+  displayVideos(data.pets);
 };
 // remove active class---------------
 const removeActiveClass = () => {
@@ -25,28 +54,71 @@ const removeActiveClass = () => {
 // remove active class---------------
 
 // load videos from API--------------------------------------------
-// click category button in their respective id -----------------
-const clickButton = (id) => {
-  fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      removeActiveClass();
-      const activeButton = document.getElementById(`btn-${id}`);
-      activeButton.classList.add("active");
-      displayVideos(data.data);
-    })
-    .catch((error) => console.log(error));
-};
+// click category button in their respective id & show the respective video according to their id -----------------
+// const clickButton = (id) => {
+//   document.getElementById("loading-container").style.display = "block";
+
+//   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       removeActiveClass();
+//       const activeButton = document.getElementById(`btn-${id}`);
+//       activeButton.classList.add("active");
+//       displayVideos(data.data);
+//     })
+
+//     .catch((error) => {
+//       console.log(error);
+//       document.getElementById("loading-container").style.display = "none";
+//     });
+// };
+// onclick="clickButton('${item.category}')" it will go to the button innerHTML;
+document
+  .getElementById("categories-main")
+  .addEventListener("click", (event) => {
+    if (event.target.closest(".category-btn")) {
+      const button = event.target.closest(".category-btn");
+      const id = button.getAttribute("data-id");
+      // 👉 Show loading spinner
+
+      document.getElementById("loading-container").style.display = "block";
+
+      // 🧠 Call clickButton (you can refactor it inline or keep it)
+      fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          removeActiveClass();
+          document.getElementById(`btn-${id}`).classList.add("active");
+          displayVideos(data.data);
+
+          // ⏳ Delay hiding spinner by 2 seconds
+
+          setTimeout(() => {
+            // ✅ Hide spinner after data is loaded
+
+            document.getElementById("loading-container").style.display = "none";
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error(error);
+          document.getElementById("loading-container").style.display = "none";
+        });
+    }
+  });
+document.getElementById("categories-main").addEventListener("click", () => {
+  console.log("hi");
+});
 // display the categories section-----------------------------------------------------
 const displayCategory = (items) => {
   const categorySection = document.getElementById("categories-main");
 
   items.forEach((item) => {
     const buttonContainer = document.createElement("div");
-    buttonContainer.innerHTML = `<button id="btn-${item.category}" onclick="clickButton('${item.category}')" class="category-btn font-bold text-[24px] flex items-center gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px]" src="${item.category_icon}"/>${item.category}</button>`;
+    buttonContainer.innerHTML = `<button id="btn-${item.category}" data-id="${item.category}"  class="category-btn font-bold text-[24px] flex items-center gap-4 items-center border px-[75px] py-[15px] rounded-lg cursor-pointer hover:shadow-lg"><img class="w-[56px]" src="${item.category_icon}"/>${item.category}</button>`;
     categorySection.append(buttonContainer);
   });
 };
+
 // display the categories section-------------------------------------------------------------
 const demo = [
   {
@@ -72,7 +144,7 @@ const loadThumbnails = (id) => {
 };
 const displayTumbnails = (images) => {
   const categorySection = document.getElementById("card-2nd");
-  console.log(images);
+  // console.log(images);
   const thumbnail = document.createElement("div");
   thumbnail.innerHTML = `<img class="w-[110px] object-cover object-center shadow" src="${images}"/>`;
   categorySection.append(thumbnail);
@@ -126,7 +198,7 @@ const adoptDetails = () => {
 
 // display the videos section-------------------------------------------------------------
 const displayVideos = (videos) => {
-  console.log("hii", videos);
+  // console.log("hii", videos);
   const categorySection = document.getElementById("card-1st");
   categorySection.innerHTML = "";
   if (videos.length === 0) {
@@ -136,7 +208,7 @@ const displayVideos = (videos) => {
     </div>`;
   }
   videos.forEach((video) => {
-    // console.log(video);
+    // console.log(video.price);
     const card = document.createElement("div");
     card.classList = "card card-compact";
 
@@ -178,13 +250,12 @@ const displayVideos = (videos) => {
       <button onclick="loadThumbnails(${
         video.petId
       })" class="btn py-1 px-5 rounded-lg"><img class="w-[20px]" src="https://img.icons8.com/?size=48&id=82788&format=png"/></button>
-      <button  onclick="adoptDetails()" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
+      <button onclick="adoptDetails()" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Adopt</button>
       <button onclick="loadDetails(${
         video.petId
       })" class="btn py-1 px-5 rounded-lg text-[#0E7A81]">Details</button>
     </div>
   </div></div>`;
-
     categorySection.append(card);
   });
 };
@@ -208,4 +279,9 @@ function myFunction() {
   }
 }
 
-const sortByPrice = () => {};
+// const sortByPrice = () => {};
+
+function compareNumbers(a, b) {
+  return a.price - b.price;
+}
+document.getElementById("sortBtn").addEventListener("click", function () {});
