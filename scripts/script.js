@@ -79,8 +79,8 @@ document
     if (event.target.closest(".category-btn")) {
       const button = event.target.closest(".category-btn");
       const id = button.getAttribute("data-id");
-      // 👉 Show loading spinner
 
+      // 👉 Show loading spinner
       document.getElementById("loading-container").style.display = "block";
 
       // 🧠 Call clickButton (you can refactor it inline or keep it)
@@ -95,7 +95,6 @@ document
 
           setTimeout(() => {
             // ✅ Hide spinner after data is loaded
-
             document.getElementById("loading-container").style.display = "none";
           }, 2000);
         })
@@ -105,9 +104,9 @@ document
         });
     }
   });
-document.getElementById("categories-main").addEventListener("click", () => {
-  console.log("hi");
-});
+// document.getElementById("categories-main").addEventListener("click", () => {
+//   console.log("hi");
+// });
 // display the categories section-----------------------------------------------------
 const displayCategory = (items) => {
   const categorySection = document.getElementById("categories-main");
