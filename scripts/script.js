@@ -10,7 +10,7 @@
 //     .catch((error) => console.log(error));
 // };
 
-// async await function------
+// async await function---------------------------------------------
 
 const loadCatagories = async () => {
   document.getElementById("loading-container").style.display = "block";
@@ -42,7 +42,8 @@ const loadVideos = async () => {
   if (data.pets.length > 0) {
     document.getElementById("loading-container").style.display = "none";
   }
-  displayVideos(data.pets);
+  pets = data.pets;
+  displayVideos(pets);
 };
 // remove active class---------------
 const removeActiveClass = () => {
@@ -220,7 +221,7 @@ const displayVideos = (videos) => {
     // } else {
     //   petName = "Unknown Pet";
     // }
-    // ternary te likhci code a----------
+    // ternary te likhci code a----------------------------------------
 
     card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
     <img class="w-full object-cover object-center rounded-xl"
@@ -260,6 +261,13 @@ const displayVideos = (videos) => {
 };
 // display the videos section-----------------------------------------------------
 
+// sorted by price-------------------------------------------------
+document.getElementById("sortBtn").addEventListener("click", function () {
+  const sortedProducts = [...pets].sort((a, b) => a.price - b.price);
+  displayVideos(sortedProducts);
+});
+// sorted by price-------------------------------------------------
+
 loadVideos();
 loadCatagories();
 // menu section------------------------
@@ -279,8 +287,11 @@ function myFunction() {
 }
 
 // const sortByPrice = () => {};
+// const sortVideos = async () => {
+//   const url = await fetch(
+//     "https://openapi.programming-hero.com/api/peddy/pets"
+//   );
+//   const data = await url.json();
 
-function compareNumbers(a, b) {
-  return a.price - b.price;
-}
-document.getElementById("sortBtn").addEventListener("click", function () {});
+//   displayVideos(data.pets);
+// };
