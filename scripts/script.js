@@ -223,7 +223,7 @@ const displayVideos = (videos) => {
     // }
     // ternary te likhci code a----------------------------------------
 
-    card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[310px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
+    card.innerHTML = `<div class="card-main px-5 py-4 rounded-xl w-[300px] shadow border-[#5A5A5A] hover:shadow-lg"><figure class="">
     <img class="w-full object-cover object-center rounded-xl"
       src="${video.image ? video.image : "assets/default-image.jpg"}"
       alt="pet"/>
