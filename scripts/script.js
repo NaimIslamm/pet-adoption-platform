@@ -80,7 +80,7 @@ document
     if (event.target.closest(".category-btn")) {
       const button = event.target.closest(".category-btn");
       const id = button.getAttribute("data-id");
-
+      // closest means ase pase(nearest) ja ase se gula niyei kaj korbe
       // 👉 Show loading spinner
       document.getElementById("loading-container").style.display = "block";
 
@@ -201,6 +201,7 @@ const displayVideos = (videos) => {
   // console.log("hii", videos);
   const categorySection = document.getElementById("card-1st");
   categorySection.innerHTML = "";
+  // jodi API te data na thake kono ekta category te tahle no info show korbe with image.
   if (videos.length === 0) {
     categorySection.innerHTML = `<div class="flex flex-col gap-5 items-center justify-center shadow w-[80%] py-15 px-15 text-center"><img src="assets/error.webp"/><h2 class="text-[40px] font-bold">No Information Available</h2>
     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.

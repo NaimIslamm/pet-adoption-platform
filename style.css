@@ -44,6 +44,7 @@ html {
     /* padding: 10px 35px; */
     transition: all 0.5s ease-in;
     border-bottom: 1px solid white;
+    display: none;
   }
   .nav-icon {
     display: none;
